@@ -52,8 +52,15 @@ public class Student {
      * @return the name of the subject with the current highest score (a String).
      */
     public String bestSubject() {
-
-        return null;
+        int bestGrade = 0;
+        String bestSubject = "";
+        for(Subject s : subjects){
+            if(s.getCurrentGrade() > bestGrade){
+                bestGrade = s.getCurrentGrade();
+                bestSubject = s.getName();
+            }
+        }
+        return bestSubject;
 
     }
 
@@ -62,8 +69,14 @@ public class Student {
      * @return the students' average grade (a double).
      */
     public double averageGrade() {
-
-        return 0.0;
+        double total = 0.0;
+        int num = 0;
+        for(Subject s : subjects){
+            total += s.getCurrentGrade();
+            num++;
+        }
+        double average = total / num;
+        return average;
 
     }
 
@@ -80,8 +93,11 @@ public class Student {
      * @return the student's report card (a String).
      */
     public String reportCard() {
-
-        return null;
+        String report = "Report card for " + firstName + " " + lastName;
+        for(Subject s : subjects){
+            report += "\n" + s.getName() + "\t" + s.getCurrentGrade();
+        }
+        return report;
 
     }
 
